@@ -1,7 +1,7 @@
 Script Changes
 ==============
 
-## 2026-01-12 v0.6.4
+## 2026-01-12 v0.6.5
 - Fixed small bug in `merge.py` related to counting bins in cumulative averages
 
 ## 2025-12-10 v0.6.3

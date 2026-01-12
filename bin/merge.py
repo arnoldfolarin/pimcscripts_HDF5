@@ -161,7 +161,7 @@ def mergeData(pimc,etype,newID,skip,baseDir,idList=None,cyldir='',
                 else:
                     if cumulative:
                         data[0] += cdata
-                        numBins.apppend(1)
+                        numBins.append(1)
                     else:
                         data.append(cdata)
                         numBins.append(cdata.shape[0])
