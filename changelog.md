@@ -1,11 +1,14 @@
 Script Changes
 ==============
 
+## 2026-01-12 v0.6.4
+- Fixed small bug in `merge.py` related to counting bins in cumulative averages
+
 ## 2025-12-10 v0.6.3
-- Fixed a small but in `reduce-one.py` related to axis labels for pcycle
-- 
+- Fixed a small bug in `reduce-one.py` related to axis labels for pcycle
+
 ## 2025-12-08 v0.6.2
-- Fixed a small but in `reduce-one.py` related to axis labels for planeaveVext
+- Fixed a small bug in `reduce-one.py` related to axis labels for planeaveVext
 
 ## 2025-11-01 v0.6.1
 - Updated `PIMCResults` to have a convenience method `.epdata_byval()` aiding the extraction of 

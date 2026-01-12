@@ -74,6 +74,7 @@ def mergeData(pimc,etype,newID,skip,baseDir,idList=None,cyldir='',
     # Open and prepare the first non-empty file
     n = 0
     empty = True
+    numBins = []
     while empty:
         numHeaders,numLines = line_counts(fileNames[n])
         if not numLines:
@@ -121,6 +122,10 @@ def mergeData(pimc,etype,newID,skip,baseDir,idList=None,cyldir='',
             data = [np.average(cdata,0)]
         else:
             data = [cdata]
+            if cumulative:
+                numBins = [1]
+            else:
+                numBins = [cdata.shape[0]]
 
     # go through all other files and append data
     for i,fname in enumerate(fileNames[n+1:]):
@@ -156,8 +161,10 @@ def mergeData(pimc,etype,newID,skip,baseDir,idList=None,cyldir='',
                 else:
                     if cumulative:
                         data[0] += cdata
+                        numBins.apppend(1)
                     else:
                         data.append(cdata)
+                        numBins.append(cdata.shape[0])
 
     # Get the name of the new output file
     outName = os.path.basename(fileNames[0]).replace(pimc.id[0],newID)
@@ -168,8 +175,8 @@ def mergeData(pimc,etype,newID,skip,baseDir,idList=None,cyldir='',
         data = np.array(data[0]/(1.0*len(fileNames)))
     else:
         data = np.vstack(data)
-        if aveSeeds:
-            numBins = np.array(numBins)
+
+    numBins = np.array(numBins)
 
     # open the output file for writing
     np.savetxt(baseDir + 'MERGED/' + cyldir + outName, data, fmt='%16.8E', 
