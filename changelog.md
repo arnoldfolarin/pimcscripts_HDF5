@@ -1,6 +1,9 @@
 Script Changes
 ==============
 
+## 2026-01-15 v0.7.1
+- Fixed header (comment) counting bug
+ 
 ## 2026-01-15 v0.7.0
 - Refactored code and added a `description.py` module which now more safely
   houses static pimc description data. 

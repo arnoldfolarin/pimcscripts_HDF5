@@ -43,7 +43,8 @@ def stats(data):
 def line_counts(filename):
     '''Use wc to count the number of lines and header lines in a file. '''
     num_lines = int(subprocess.check_output(['wc', '-l', filename]).split()[0])
-    num_header = str(subprocess.check_output(['grep','-o','-i','\#',filename])).count('#')
+    cmd = ["awk", "/^#/{n++; next} {print n; exit} END{if (NR==0 || $0 ~ /^#/) print n}", filename]
+    num_header = int(subprocess.check_output(cmd, text=True).strip())
     return num_header,num_lines
 
 # -----------------------------------------------------------------------------
