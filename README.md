@@ -41,6 +41,38 @@ Below we describe a few useful ones.
       -r, --repeated_header
                             deal with duplicate headers
 
+### `pimcave_h5.py`
+
+Average estimator data from grouped PIMCID HDF5 files and write
+`gce-estimator-averaged-*.dat` files. Uses the same mean/error math as
+`pimcave.py`, but reads `/estimator` directly from `.h5` files instead of
+raw `.dat` measurement files.
+
+Requires `h5py` in addition to the usual install:
+
+    pip install h5py
+
+HDF5 input layout is produced by the
+[hdf5-conversion-script](https://github.com/arnoldfolarin/hdf5-conversion-script)
+converter (one `.h5` per PIMCID, `/estimator/values` + `column_names` attribute).
+
+    usage: pimcave_h5.py [-h] [-s SKIP] [-e ESTIMATOR] [-o OUTPUT_DIR] h5_file [h5_file ...]
+
+    positional arguments:
+      h5_file               HDF5 file(s) to average (one PIMCID per file)
+
+    optional arguments:
+      -h, --help            show this help message and exit
+      -s SKIP, --skip SKIP  skip measurements (integer count or fraction in [0, 1))
+      -e ESTIMATOR, --estimator ESTIMATOR
+                            average a single estimator column only
+      -o OUTPUT_DIR, --output-dir OUTPUT_DIR
+                            output directory (default: same folder as each .h5)
+
+Example:
+
+    python bin/pimcave_h5.py path/to/run.h5 -o averaged
+
 ### `pimcplot.py`
 
     pimcplot
